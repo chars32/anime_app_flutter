@@ -16,6 +16,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
     final scaffoldBackground = Theme.of(context).scaffoldBackgroundColor;
     final textColor = Theme.of(context).textTheme;
 
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -38,12 +41,30 @@ class _MoviesScreenState extends State<MoviesScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SearchBarWidget(isSeachVisible: isSeachVisible),
             Container(
+              width: widthScreen * .9,
+              height: heightScreen * .4,
+              color: Colors.blue,
               child: Center(
                 child: Text(
-                  'Movies Screen',
+                  'Airing animes',
+                  style: textColor.titleMedium,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: heightScreen * .02,
+            ),
+            Container(
+              width: widthScreen * .9,
+              height: heightScreen * .4,
+              color: Colors.blue,
+              child: Center(
+                child: Text(
+                  'Top animes',
                   style: textColor.titleMedium,
                 ),
               ),
