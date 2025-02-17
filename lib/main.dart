@@ -1,4 +1,5 @@
 import 'package:anime_app/config/router/app_router.dart';
+import 'package:anime_app/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
+      theme: AppTheme().getTheme(),
     );
   }
 }
