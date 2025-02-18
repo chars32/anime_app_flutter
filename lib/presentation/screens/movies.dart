@@ -41,32 +41,90 @@ class _MoviesScreenState extends State<MoviesScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SearchBarWidget(isSeachVisible: isSeachVisible),
-            Container(
+            SizedBox(
               width: widthScreen * .9,
               height: heightScreen * .4,
-              color: Colors.blue,
-              child: Center(
-                child: Text(
-                  'Airing animes',
-                  style: textColor.titleMedium,
-                ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: SizedBox(
+                      width: widthScreen * .9,
+                      height: heightScreen * .041,
+                      child: Text(
+                        'Airing animes',
+                        style: textColor.titleMedium,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return SizedBox(
+                          width: widthScreen * .45,
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/imagenes/naruto.png',
+                                fit: BoxFit.cover,
+                              ),
+                              ListTile(
+                                  title: Center(
+                                child: Text(
+                                  'Anime $index',
+                                  style: textColor.titleSmall,
+                                ),
+                              )),
+                            ],
+                          ),
+                        );
+                      },
+                      itemCount: 4,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(
-              height: heightScreen * .02,
-            ),
-            Container(
-              width: widthScreen * .9,
-              height: heightScreen * .4,
-              color: Colors.blue,
-              child: Center(
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: SizedBox(
+                width: widthScreen * .9,
+                height: heightScreen * .041,
                 child: Text(
                   'Top animes',
                   style: textColor.titleMedium,
                 ),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    width: widthScreen * .45,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/imagenes/naruto.png',
+                          fit: BoxFit.cover,
+                        ),
+                        ListTile(
+                          title: Center(
+                            child: Text(
+                              'Anime $index',
+                              style: textColor.titleSmall,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                itemCount: 4,
+                scrollDirection: Axis.horizontal,
               ),
             ),
           ],

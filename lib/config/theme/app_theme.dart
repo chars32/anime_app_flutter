@@ -19,6 +19,10 @@ class AppTheme {
             color: colorSeed,
             fontSize: 22,
           ),
+          titleSmall: TextStyle(
+            color: colorSeed,
+            fontSize: 18,
+          ),
         ),
       );
 }
