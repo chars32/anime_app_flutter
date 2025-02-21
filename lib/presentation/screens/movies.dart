@@ -68,7 +68,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                           child: Column(
                             children: [
                               Image.asset(
-                                'assets/imagenes/naruto.png',
+                                'assets/imagenes/atot.png',
                                 fit: BoxFit.cover,
                               ),
                               ListTile(
