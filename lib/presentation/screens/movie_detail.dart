@@ -1,3 +1,4 @@
+import 'package:anime_app/presentation/widgets/details_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,6 +24,7 @@ class MovieDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Cover image
             SizedBox(
               width: 390,
               height: 218,
@@ -92,154 +94,20 @@ class MovieDetailScreen extends StatelessWidget {
                         ),
                       ),
                       // Rate
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 48,
-                                height: 48,
-                                decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 70, 89, 131),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Icon(
-                                  Icons.star_rate,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              const SizedBox(
-                                width: 92,
-                                height: 45,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Rate',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    Text(
-                                      '9.1 / 10',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+                      const DetailsItem(
+                        detailTitle: 'Rates',
+                        detailSubtitle: '9.1 / 10',
                       ),
+
                       // Airing Status
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 48,
-                                height: 48,
-                                decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 70, 89, 131),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Icon(
-                                  Icons.tv,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              const SizedBox(
-                                width: 92,
-                                height: 45,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Airin Status',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Completed',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+                      const DetailsItem(
+                        detailTitle: "Airing Status",
+                        detailSubtitle: "Completed",
                       ),
                       // Episodes
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 48,
-                                height: 48,
-                                decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 70, 89, 131),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Icon(
-                                  Icons.star_rate,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              const SizedBox(
-                                width: 92,
-                                height: 45,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Episodes',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    Text(
-                                      '26',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+                      const DetailsItem(
+                        detailTitle: "Episodes",
+                        detailSubtitle: "24",
                       ),
                       ElevatedButton(
                         onPressed: () {
