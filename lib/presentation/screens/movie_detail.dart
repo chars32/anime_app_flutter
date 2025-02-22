@@ -238,6 +238,23 @@ class MovieDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Acción a realizar al presionar el botón
+                        },
+                        style: const ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            Color(0xEE1022E7),
+                          ),
+                        ),
+                        child: const Text(
+                          'Watch Trailer',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ],
