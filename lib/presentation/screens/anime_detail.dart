@@ -2,8 +2,8 @@ import 'package:anime_app/presentation/widgets/details_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class MovieDetailScreen extends StatelessWidget {
-  const MovieDetailScreen({super.key});
+class AnimeDetailScreen extends StatelessWidget {
+  const AnimeDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

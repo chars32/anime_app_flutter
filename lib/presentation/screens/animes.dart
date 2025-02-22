@@ -2,14 +2,14 @@ import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class MoviesScreen extends StatefulWidget {
-  const MoviesScreen({super.key});
+class AnimesScreen extends StatefulWidget {
+  const AnimesScreen({super.key});
 
   @override
-  State<MoviesScreen> createState() => _MoviesScreenState();
+  State<AnimesScreen> createState() => _AnimesScreenState();
 }
 
-class _MoviesScreenState extends State<MoviesScreen> {
+class _AnimesScreenState extends State<AnimesScreen> {
   bool isSeachVisible = false;
 
   @override

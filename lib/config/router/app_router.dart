@@ -1,5 +1,5 @@
-import 'package:anime_app/presentation/screens/movie_detail.dart';
-import 'package:anime_app/presentation/screens/movies.dart';
+import 'package:anime_app/presentation/screens/anime_detail.dart';
+import 'package:anime_app/presentation/screens/animes.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
@@ -7,11 +7,11 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const MoviesScreen(),
+      builder: (context, state) => const AnimesScreen(),
     ),
     GoRoute(
       path: '/movie/id',
-      builder: (context, state) => const MovieDetailScreen(),
+      builder: (context, state) => const AnimeDetailScreen(),
     ),
   ],
 );
