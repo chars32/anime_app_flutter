@@ -24,13 +24,13 @@ class Anime {
   factory Anime.fromJson(Map<String, dynamic> json) {
     return Anime(
       mailId: json['mal_id'],
-      title: json['title'],
-      imageUrl: json['image_url'],
-      synopsis: json['synopsis'],
-      score: json['score'],
+      title: json['title_english'],
+      imageUrl: json['images']['jpg']['image_url'],
+      synopsis: json['synopsis'] ?? 'No synopsis avaiable',
+      score: json['score'].toString(),
       type: json['type'],
-      episodes: json['episodes'],
-      year: json['year'],
+      episodes: json['episodes'].toString(),
+      year: json['year'].toString(),
       status: json['status'],
     );
   }

@@ -1,6 +1,9 @@
 import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/anime_provider.dart';
 
 class AnimesScreen extends StatefulWidget {
   const AnimesScreen({super.key});
@@ -19,6 +22,9 @@ class _AnimesScreenState extends State<AnimesScreen> {
 
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
+
+    final animeProvider =
+        Provider.of<AnimeProvider>(context, listen: false).fetchAnimeNow();
 
     return Scaffold(
       appBar: AppBar(
