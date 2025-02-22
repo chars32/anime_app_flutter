@@ -3,7 +3,7 @@ import 'package:anime_app/presentation/screens/movies.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/movie/id',
+  initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',

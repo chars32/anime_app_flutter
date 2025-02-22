@@ -1,5 +1,6 @@
 import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MoviesScreen extends StatefulWidget {
   const MoviesScreen({super.key});
@@ -65,20 +66,25 @@ class _MoviesScreenState extends State<MoviesScreen> {
                       itemBuilder: (context, index) {
                         return SizedBox(
                           width: widthScreen * .45,
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/imagenes/atot.png',
-                                fit: BoxFit.cover,
-                              ),
-                              ListTile(
-                                  title: Center(
-                                child: Text(
-                                  'Anime $index',
-                                  style: textColor.titleSmall,
+                          child: GestureDetector(
+                            onTap: () {
+                              context.go('/movie/id');
+                            },
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/imagenes/atot.png',
+                                  fit: BoxFit.cover,
                                 ),
-                              )),
-                            ],
+                                ListTile(
+                                    title: Center(
+                                  child: Text(
+                                    'Anime $index',
+                                    style: textColor.titleSmall,
+                                  ),
+                                )),
+                              ],
+                            ),
                           ),
                         );
                       },

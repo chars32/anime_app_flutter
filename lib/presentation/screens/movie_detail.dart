@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({super.key});
@@ -12,7 +13,9 @@ class MovieDetailScreen extends StatelessWidget {
             Icons.arrow_back,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            context.go('/');
+          },
         ),
         title: const Text('Atack on Titan'),
         centerTitle: true,
