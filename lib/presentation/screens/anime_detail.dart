@@ -50,8 +50,8 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               children: [
                 // Cover image
                 SizedBox(
-                  width: 390,
-                  height: 218,
+                  width: 200,
+                  height: 250,
                   child: Image.network(
                     anime!.imageUrl,
                     fit: BoxFit.cover,
