@@ -1,12 +1,30 @@
 import 'package:anime_app/presentation/widgets/details_item.dart';
+import 'package:anime_app/provider/anime_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
-class AnimeDetailScreen extends StatelessWidget {
-  const AnimeDetailScreen({super.key});
+class AnimeDetailScreen extends StatefulWidget {
+  final String id;
+
+  const AnimeDetailScreen({super.key, required this.id});
+
+  @override
+  State<AnimeDetailScreen> createState() => _AnimeDetailScreenState();
+}
+
+class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<AnimeProvider>(context, listen: false)
+        .fetchAnymeById(int.parse(widget.id));
+  }
 
   @override
   Widget build(BuildContext context) {
+    final anime = Provider.of<AnimeProvider>(context).animeById;
+    print('anime: $anime');
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -21,118 +39,128 @@ class AnimeDetailScreen extends StatelessWidget {
         title: const Text('Atack on Titan'),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Cover image
-            SizedBox(
-              width: 390,
-              height: 218,
-              child: Image.network(
-                'https://miro.medium.com/v2/resize:fit:1200/1*ZrHkRXkvNenDc7PJX5V9nw.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  // Clasification / Year / Genre
-                  const SizedBox(
-                    width: double.infinity,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 4, bottom: 12),
-                      child: Text(
-                        'TV-MA | 2021 | Action',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
+      body: Consumer<AnimeProvider>(
+        builder: (context, animeProvider, _) {
+          if (animeProvider.animeById == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                // Cover image
+                SizedBox(
+                  width: 390,
+                  height: 218,
+                  child: Image.network(
+                    anime!.imageUrl,
+                    fit: BoxFit.cover,
                   ),
-                  // Synopsis
-                  Column(
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
                     children: [
+                      // Clasification / Year / Genre
                       SizedBox(
                         width: double.infinity,
                         child: Padding(
-                          padding:
-                              const EdgeInsets.only(top: 16.0, bottom: 8.0),
+                          padding: const EdgeInsets.only(top: 4, bottom: 12),
                           child: Text(
-                            'Synopsis',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: double.infinity,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 12.0, top: 4.0),
-                          child: Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc necLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc necLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc necLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc nec',
-                            style: TextStyle(
+                            '${anime.status} | ${anime.year} | ${anime.type}',
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                             ),
-                            textAlign: TextAlign.justify,
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  // Details
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(top: 16.0, bottom: 8.0),
-                          child: Text('Details',
-                              style: Theme.of(context).textTheme.titleMedium),
-                        ),
+                      // Synopsis
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 16.0, bottom: 8.0),
+                              child: Text(
+                                'Synopsis',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(bottom: 12.0, top: 4.0),
+                              child: Text(
+                                anime.synopsis,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      // Rate
-                      const DetailsItem(
-                        detailTitle: 'Rates',
-                        detailSubtitle: '9.1 / 10',
-                      ),
+                      // Details
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 16.0, bottom: 8.0),
+                              child: Text('Details',
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium),
+                            ),
+                          ),
+                          // Rate
+                          DetailsItem(
+                            detailTitle: 'Rates',
+                            detailSubtitle: '${anime.score} / 10',
+                          ),
 
-                      // Airing Status
-                      const DetailsItem(
-                        detailTitle: "Airing Status",
-                        detailSubtitle: "Completed",
-                      ),
-                      // Episodes
-                      const DetailsItem(
-                        detailTitle: "Episodes",
-                        detailSubtitle: "24",
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Acción a realizar al presionar el botón
-                        },
-                        style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(
-                            Color(0xEE1022E7),
+                          // Airing Status
+                          DetailsItem(
+                            detailTitle: "Airing Status",
+                            detailSubtitle: anime.status,
                           ),
-                        ),
-                        child: const Text(
-                          'Watch Trailer',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
+                          // Episodes
+                          DetailsItem(
+                            detailTitle: "Episodes",
+                            detailSubtitle: anime.episodes.toString(),
                           ),
-                        ),
-                      )
+                          ElevatedButton(
+                            onPressed: () {
+                              // Acción a realizar al presionar el botón
+                            },
+                            style: const ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                Color(0xEE1022E7),
+                              ),
+                            ),
+                            child: const Text(
+                              'Watch Trailer',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

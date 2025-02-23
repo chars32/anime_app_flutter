@@ -10,8 +10,11 @@ final appRouter = GoRouter(
       builder: (context, state) => const AnimesScreen(),
     ),
     GoRoute(
-      path: '/movie/id',
-      builder: (context, state) => const AnimeDetailScreen(),
+      path: '/anime/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id'].toString();
+        return AnimeDetailScreen(id: id);
+      },
     ),
   ],
 );
