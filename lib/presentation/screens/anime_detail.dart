@@ -24,7 +24,6 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final anime = Provider.of<AnimeProvider>(context).animeById;
-    print('anime: $anime');
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -36,7 +35,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
             context.go('/');
           },
         ),
-        title: const Text('Atack on Titan'),
+        title: Text('${anime?.title}'),
         centerTitle: true,
       ),
       body: Consumer<AnimeProvider>(
