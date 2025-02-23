@@ -51,7 +51,6 @@ class _AnimesScreenState extends State<AnimesScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SearchBarWidget(isSeachVisible: isSeachVisible),
             SizedBox(
@@ -70,49 +69,110 @@ class _AnimesScreenState extends State<AnimesScreen> {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Consumer<AnimeProvider>(
+                  Consumer<AnimeProvider>(
                       builder: (context, animeAiringProvider, child) {
-                        return animeAiringProvider.animeList.isEmpty
-                            ? const CircularProgressIndicator()
-                            : ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return SizedBox(
-                                    width: widthScreen * .45,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        context.go('/movie/id');
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Image.network(
-                                            // 'assets/imagenes/atot.png',
-                                            animeAiringProvider
-                                                .animeList[index].imageUrl,
-                                            fit: BoxFit.cover,
-                                            height: 213,
-                                            width: 160,
-                                          ),
-                                          ListTile(
-                                              title: Center(
-                                            child: Text(
-                                              animeAiringProvider
-                                                  .animeList[index].title,
-                                              style: textColor.titleSmall,
-                                              overflow: TextOverflow.ellipsis,
+                    return animeAiringProvider.animeList.isEmpty
+                        ? SizedBox(
+                            height: heightScreen * 0.30,
+                            width: widthScreen * 0.55,
+                            child: const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 5,
+                              ),
+                            ),
+                          )
+                        : Expanded(
+                            child: Consumer<AnimeProvider>(
+                              builder: (context, animeAiringProvider, child) {
+                                return animeAiringProvider.animeList.isEmpty
+                                    ? const CircularProgressIndicator()
+                                    : ListView.builder(
+                                        itemBuilder: (context, index) {
+                                          return SizedBox(
+                                            width: widthScreen * .45,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                context.go('/movie/id');
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  Image.network(
+                                                    // 'assets/imagenes/atot.png',
+                                                    animeAiringProvider
+                                                        .animeList[index]
+                                                        .imageUrl,
+                                                    fit: BoxFit.cover,
+                                                    height: 213,
+                                                    width: 160,
+                                                  ),
+                                                  ListTile(
+                                                      title: Center(
+                                                    child: Text(
+                                                      animeAiringProvider
+                                                          .animeList[index]
+                                                          .title,
+                                                      style:
+                                                          textColor.titleSmall,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                  )),
+                                                ],
+                                              ),
                                             ),
-                                          )),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                                itemCount: animeAiringProvider.animeList.length,
-                                scrollDirection: Axis.horizontal,
-                              );
-                      },
-                    ),
-                  ),
+                                          );
+                                        },
+                                        itemCount: animeAiringProvider
+                                            .animeList.length,
+                                        scrollDirection: Axis.horizontal,
+                                      );
+                              },
+                            ),
+                          );
+                  })
+                  // Expanded(
+                  //   child: Consumer<AnimeProvider>(
+                  //     builder: (context, animeAiringProvider, child) {
+                  //       return animeAiringProvider.animeList.isEmpty
+                  //           ? const CircularProgressIndicator()
+                  //           : ListView.builder(
+                  //               itemBuilder: (context, index) {
+                  //                 return SizedBox(
+                  //                   width: widthScreen * .45,
+                  //                   child: GestureDetector(
+                  //                     onTap: () {
+                  //                       context.go('/movie/id');
+                  //                     },
+                  //                     child: Column(
+                  //                       children: [
+                  //                         Image.network(
+                  //                           // 'assets/imagenes/atot.png',
+                  //                           animeAiringProvider
+                  //                               .animeList[index].imageUrl,
+                  //                           fit: BoxFit.cover,
+                  //                           height: 213,
+                  //                           width: 160,
+                  //                         ),
+                  //                         ListTile(
+                  //                             title: Center(
+                  //                           child: Text(
+                  //                             animeAiringProvider
+                  //                                 .animeList[index].title,
+                  //                             style: textColor.titleSmall,
+                  //                             overflow: TextOverflow.ellipsis,
+                  //                           ),
+                  //                         )),
+                  //                       ],
+                  //                     ),
+                  //                   ),
+                  //                 );
+                  //               },
+                  //               itemCount: animeAiringProvider.animeList.length,
+                  //               scrollDirection: Axis.horizontal,
+                  //             );
+                  //     },
+                  //   ),
+                  // ),
                 ],
               ),
             ),
