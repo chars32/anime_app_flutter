@@ -1,3 +1,4 @@
+import 'package:anime_app/models/animes_model.dart';
 import 'package:anime_app/presentation/widgets/details_item.dart';
 import 'package:anime_app/provider/anime_provider.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
             color: Colors.white,
           ),
           onPressed: () {
+            Provider.of<AnimeProvider>(context, listen: false).animeById = null;
             context.go('/');
           },
         ),

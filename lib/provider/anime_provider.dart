@@ -12,6 +12,10 @@ class AnimeProvider extends ChangeNotifier {
   // fetchAnimeById option
   Anime? _animeById;
   Anime? get animeById => _animeById;
+  set animeById(Anime? anime) {
+    _animeById = anime;
+    notifyListeners();
+  }
 
   String baseUrl = 'https://api.jikan.moe/v4';
 
