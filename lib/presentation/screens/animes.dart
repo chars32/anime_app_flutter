@@ -29,9 +29,6 @@ class _AnimesScreenState extends State<AnimesScreen> {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
 
-    final animeAiringProvider =
-        Provider.of<AnimeProvider>(context, listen: false).animeList;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -85,52 +82,40 @@ class _AnimesScreenState extends State<AnimesScreen> {
                               ),
                             )
                           : Expanded(
-                              child: Consumer<AnimeProvider>(
-                                builder: (context, animeAiringProvider, child) {
-                                  return animeAiringProvider.animeList.isEmpty
-                                      ? const CircularProgressIndicator()
-                                      : ListView.builder(
-                                          itemBuilder: (context, index) {
-                                            return SizedBox(
-                                              width: widthScreen * .45,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  context.go(
-                                                      '/anime/${animeAiringProvider.animeList[index].mailId}');
-                                                },
-                                                child: Column(
-                                                  children: [
-                                                    Image.network(
-                                                      // 'assets/imagenes/atot.png',
-                                                      animeAiringProvider
-                                                          .animeList[index]
-                                                          .imageUrl,
-                                                      fit: BoxFit.cover,
-                                                      height: 213,
-                                                      width: 160,
-                                                    ),
-                                                    ListTile(
-                                                        title: Center(
-                                                      child: Text(
-                                                        animeAiringProvider
-                                                            .animeList[index]
-                                                            .title,
-                                                        style: textColor
-                                                            .titleSmall,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                    )),
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          itemCount: animeAiringProvider
-                                              .animeList.length,
-                                          scrollDirection: Axis.horizontal,
-                                        );
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return SizedBox(
+                                    width: widthScreen * .45,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        context.go(
+                                            '/anime/${animeAiringProvider.animeList[index].mailId}');
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Image.network(
+                                            animeAiringProvider
+                                                .animeList[index].imageUrl,
+                                            fit: BoxFit.cover,
+                                            height: 213,
+                                            width: 160,
+                                          ),
+                                          ListTile(
+                                              title: Center(
+                                            child: Text(
+                                              animeAiringProvider
+                                                  .animeList[index].title,
+                                              style: textColor.titleSmall,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          )),
+                                        ],
+                                      ),
+                                    ),
+                                  );
                                 },
+                                itemCount: animeAiringProvider.animeList.length,
+                                scrollDirection: Axis.horizontal,
                               ),
                             );
                     },
