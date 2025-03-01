@@ -1,5 +1,6 @@
 import 'package:anime_app/presentation/widgets/details_item.dart';
 import 'package:anime_app/provider/anime_provider.dart';
+import 'package:anime_app/presentation/widgets/synopsis_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -95,14 +96,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                             child: Padding(
                               padding:
                                   const EdgeInsets.only(bottom: 12.0, top: 4.0),
-                              child: Text(
-                                anime.synopsis,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
-                                textAlign: TextAlign.justify,
-                              ),
+                              child: SynopsisWidget(synopsis: anime.synopsis),
                             ),
                           ),
                         ],
