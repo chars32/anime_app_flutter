@@ -24,7 +24,7 @@ class Anime {
   factory Anime.fromJson(Map<String, dynamic> json) {
     return Anime(
       mailId: json['mal_id'],
-      title: json['title_english'],
+      title: json['title_english'] ?? json['title'],
       imageUrl: json['images']['jpg']['image_url'],
       synopsis: json['synopsis'] ?? 'No synopsis avaiable',
       score: json['score'].toString(),
