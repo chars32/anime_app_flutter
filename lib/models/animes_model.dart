@@ -8,6 +8,7 @@ class Anime {
   final String episodes;
   final String year;
   final String status;
+  final String videoUrl;
 
   Anime({
     required this.mailId,
@@ -19,6 +20,7 @@ class Anime {
     required this.episodes,
     required this.year,
     required this.status,
+    required this.videoUrl,
   });
 
   factory Anime.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class Anime {
       episodes: json['episodes'].toString(),
       year: json['year'].toString(),
       status: json['status'],
+      videoUrl: json['trailer']['url'] ?? 'No trailer',
     );
   }
 }

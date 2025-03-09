@@ -4,6 +4,7 @@ import 'package:anime_app/presentation/widgets/synopsis_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AnimeDetailScreen extends StatefulWidget {
   final String id;
@@ -133,6 +134,11 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                           ElevatedButton(
                             onPressed: () {
                               // Acción a realizar al presionar el botón
+                              if (anime.videoUrl.isNotEmpty) {
+                                launchUrl(Uri.parse(anime.videoUrl));
+                              } else {
+                                print('No hay vudeo');
+                              }
                             },
                             style: const ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(

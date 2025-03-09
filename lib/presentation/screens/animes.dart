@@ -57,7 +57,8 @@ class _AnimesScreenState extends State<AnimesScreen> {
             SearchBarWidget(isSeachVisible: isSeachVisible),
             Consumer<AnimeProvider>(
               builder: (context, animeProvider, child) {
-                if (animeProvider.topAnimeList.isEmpty) {
+                if (animeProvider.topAnimeList.isEmpty ||
+                    animeProvider.animeList.isEmpty) {
                   return const Expanded(
                     child: Center(
                       child: CircularProgressIndicator(
