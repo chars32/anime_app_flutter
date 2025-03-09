@@ -1,4 +1,3 @@
-import 'package:anime_app/presentation/widgets/anime_slider.dart';
 import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:anime_app/presentation/widgets/slider_list_anime.dart';
 import 'package:flutter/material.dart';
@@ -81,12 +80,6 @@ class _AnimesScreenState extends State<AnimesScreen> {
                 );
               },
             )
-            // const AnimeSlider(
-            //   titleSlider: 'Airing animes',
-            // ),
-            // const AnimeSlider(
-            //   titleSlider: 'Top animes',
-            // ),
           ],
         ),
       ),
