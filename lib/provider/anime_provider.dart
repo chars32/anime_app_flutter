@@ -1,5 +1,5 @@
 import 'package:anime_app/models/animes_model.dart';
-import 'package:dio/dio.dart';
+import 'package:anime_app/services/api_services.dart';
 import 'package:flutter/material.dart';
 
 class AnimeProvider extends ChangeNotifier {
@@ -19,55 +19,35 @@ class AnimeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  final ApiServices _apiServices = ApiServices();
+
   String baseUrl = 'https://api.jikan.moe/v4';
 
   Future<void> fetchAnimeNow() async {
-    // Fetch data from API
     try {
-      final dio = Dio();
-      final response = await dio.get('$baseUrl/seasons/now');
-
-      if (response.statusCode == 200) {
-        final List<dynamic> data = response.data['data'];
-        _animeList = data.map((item) => Anime.fromJson(item)).toList();
-        notifyListeners();
-      } else {
-        throw Exception('Failed to load data anime: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error fetching anime now: $e');
+      final List<dynamic> data = await _apiServices.getAnimesNow();
+      _animeList = data.map((json) => Anime.fromJson(json)).toList();
+      notifyListeners();
+    } catch (error) {
+      print('Error fetching anime now: $error');
     }
   }
 
   Future<void> fetchTopAnime() async {
     try {
-      final dio = Dio();
-      final response = await dio.get('$baseUrl/top/anime');
-
-      if (response.statusCode == 200) {
-        final List<dynamic> data = response.data['data'];
-        _topAnimeList = data.map((item) => Anime.fromJson(item)).toList();
-        notifyListeners();
-      } else {
-        throw Exception('Failed to load data anime: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error fetching top anime: $e');
+      final List<dynamic> data = await _apiServices.getTopAnimes();
+      _topAnimeList = data.map((json) => Anime.fromJson(json)).toList();
+      notifyListeners();
+    } catch (error) {
+      throw Exception('Failed to load data anime: $error}');
     }
   }
 
   Future<void> fetchAnymeById(int id) async {
     try {
-      final dio = Dio();
-      final response = await dio.get('$baseUrl/anime/$id');
-
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> data = response.data['data'];
-        _animeById = Anime.fromJson(data);
-        notifyListeners();
-      } else {
-        throw Exception('Failed to load anime by id: ${response.statusCode}');
-      }
+      final Map<String, dynamic> data = await _apiServices.getAnimesById(id);
+      _animeById = Anime.fromJson(data);
+      notifyListeners();
     } catch (e) {
       print('Error anime by id: $e');
     }
