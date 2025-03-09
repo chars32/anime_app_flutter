@@ -44,14 +44,14 @@ class DetailsItem extends StatelessWidget {
                     detailTitle,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                   Text(
                     detailSubtitle,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
                   ),
                 ],

@@ -37,7 +37,7 @@ class _SynopsisWidgetState extends State<SynopsisWidget> {
               });
             },
             child: Text(
-              isExpanded ? 'Mostrar menos' : 'Mostrar más',
+              isExpanded ? 'Show less' : 'Show more',
               style: const TextStyle(
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
