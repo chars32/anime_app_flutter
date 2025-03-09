@@ -1,6 +1,5 @@
 import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:anime_app/presentation/widgets/slider_list_anime.dart';
-import 'package:anime_app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,9 +25,6 @@ class _AnimesScreenState extends State<AnimesScreen> {
   @override
   Widget build(BuildContext context) {
     final scaffoldBackground = Theme.of(context).scaffoldBackgroundColor;
-
-    final algo = ApiServices();
-    algo.getAnimesNow();
 
     return Scaffold(
       appBar: AppBar(
