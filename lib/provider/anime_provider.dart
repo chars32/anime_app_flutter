@@ -40,7 +40,6 @@ class AnimeProvider extends ChangeNotifier {
   }
 
   Future<void> fetchTopAnime() async {
-    print('entre top anime');
     try {
       final dio = Dio();
       final response = await dio.get('$baseUrl/top/anime');

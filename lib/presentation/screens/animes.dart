@@ -1,7 +1,7 @@
 import 'package:anime_app/presentation/widgets/anime_slider.dart';
 import 'package:anime_app/presentation/widgets/search_bar.dart';
+import 'package:anime_app/presentation/widgets/slider_list_anime.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/anime_provider.dart';
@@ -56,12 +56,37 @@ class _AnimesScreenState extends State<AnimesScreen> {
         child: Column(
           children: [
             SearchBarWidget(isSeachVisible: isSeachVisible),
-            const AnimeSlider(
-              titleSlider: 'Airing animes',
-            ),
-            const AnimeSlider(
-              titleSlider: 'Top animes',
-            ),
+            Consumer<AnimeProvider>(
+              builder: (context, animeProvider, child) {
+                if (animeProvider.topAnimeList.isEmpty) {
+                  return const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 5,
+                      ),
+                    ),
+                  );
+                }
+                return Column(
+                  children: [
+                    SliderListAnime(
+                      tiitleSlider: 'Airing Animes',
+                      listAnime: animeProvider.animeList,
+                    ),
+                    SliderListAnime(
+                      tiitleSlider: 'Top Animes',
+                      listAnime: animeProvider.topAnimeList,
+                    ),
+                  ],
+                );
+              },
+            )
+            // const AnimeSlider(
+            //   titleSlider: 'Airing animes',
+            // ),
+            // const AnimeSlider(
+            //   titleSlider: 'Top animes',
+            // ),
           ],
         ),
       ),
