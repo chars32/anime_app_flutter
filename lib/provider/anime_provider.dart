@@ -19,6 +19,10 @@ class AnimeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Search anime
+  List<Anime> _searchAnimeList = [];
+  List<Anime> get searchAnimeList => _searchAnimeList;
+
   final ApiServices _apiServices = ApiServices();
 
   String baseUrl = 'https://api.jikan.moe/v4';
@@ -50,6 +54,16 @@ class AnimeProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print('Error anime by id: $e');
+    }
+  }
+
+  Future<void> searchAnimes(String query) async {
+    try {
+      final List<dynamic> data = await _apiServices.searchAnimes(query);
+      _searchAnimeList = data.map((json) => Anime.fromJson(json)).toList();
+      notifyListeners();
+    } catch (error) {
+      print('Error search anime: $error');
     }
   }
 }

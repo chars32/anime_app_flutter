@@ -37,4 +37,15 @@ class ApiServices {
       throw Exception('Failed to load Top Animes');
     }
   }
+
+  Future<List<dynamic>> searchAnimes(String query) async {
+    final response = await dio.get('$baseUrl/anime?q=$query');
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonResponse = response.data['data'];
+      return jsonResponse;
+    } else {
+      throw Exception('Failed to load search animes');
+    }
+  }
 }
