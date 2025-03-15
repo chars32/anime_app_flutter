@@ -1,5 +1,6 @@
 import 'package:anime_app/presentation/screens/anime_detail.dart';
 import 'package:anime_app/presentation/screens/animes.dart';
+import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
@@ -14,6 +15,12 @@ final appRouter = GoRouter(
       builder: (context, state) {
         final id = state.pathParameters['id'].toString();
         return AnimeDetailScreen(id: id);
+      },
+    ),
+    GoRoute(
+      path: '/search',
+      builder: (context, state) {
+        return SearchBarWidget();
       },
     ),
   ],

@@ -1,6 +1,8 @@
+import 'package:anime_app/config/router/app_router.dart';
 import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:anime_app/presentation/widgets/slider_list_anime.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/anime_provider.dart';
@@ -13,7 +15,7 @@ class AnimesScreen extends StatefulWidget {
 }
 
 class _AnimesScreenState extends State<AnimesScreen> {
-  bool isSeachVisible = false;
+  // bool isSeachVisible = false;
 
   @override
   void initState() {
@@ -38,9 +40,10 @@ class _AnimesScreenState extends State<AnimesScreen> {
             color: Colors.white,
             icon: const Icon(Icons.search),
             onPressed: () {
-              setState(() {
-                isSeachVisible = !isSeachVisible;
-              });
+              context.go('/search');
+              // setState(() {
+              //   isSeachVisible = !isSeachVisible;
+              // });
             },
           ),
         ],
@@ -49,7 +52,7 @@ class _AnimesScreenState extends State<AnimesScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SearchBarWidget(isSeachVisible: isSeachVisible),
+            // SearchBarWidget(isSeachVisible: isSeachVisible),
             Consumer<AnimeProvider>(
               builder: (context, animeProvider, child) {
                 if (animeProvider.topAnimeList.isEmpty ||
