@@ -66,4 +66,9 @@ class AnimeProvider extends ChangeNotifier {
       print('Error search anime: $error');
     }
   }
+
+  void searchAnimesReset() {
+    _searchAnimeList = [];
+    notifyListeners();
+  }
 }

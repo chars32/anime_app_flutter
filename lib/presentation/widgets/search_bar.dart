@@ -29,6 +29,16 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
             SearchBar(
               hintText: 'Search',
               leading: const Icon(Icons.search),
+              trailing: [
+                IconButton(
+                  onPressed: () {
+                    _controller.clear();
+                    Provider.of<AnimeProvider>(context, listen: false)
+                        .searchAnimesReset();
+                  },
+                  icon: const Icon(Icons.clear),
+                ),
+              ],
               controller: _controller,
               onChanged: (value) {
                 Provider.of<AnimeProvider>(context, listen: false)
@@ -40,11 +50,12 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
             ),
             Consumer<AnimeProvider>(
               builder: (context, provider, child) {
-                if (provider.searchAnimeList.isEmpty) {
+                if (provider.searchAnimeList.isEmpty ||
+                    _controller.text.isEmpty) {
                   return const Expanded(
                     child: Center(
                       child: Text(
-                        'No search animes',
+                        'Empty',
                         style: TextStyle(color: Colors.grey),
                       ),
                     ),
@@ -57,7 +68,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                     itemBuilder: (context, index) {
                       return Text(
                         provider.searchAnimeList[index].title,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       );
                     },
                   ),
