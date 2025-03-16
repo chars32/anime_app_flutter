@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/anime_provider.dart';
@@ -21,6 +22,15 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       appBar: AppBar(
         title: const Text('Search Animes'),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            context.go('/');
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
