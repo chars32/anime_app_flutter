@@ -29,11 +29,13 @@ class Anime {
       title: json['title_english'] ?? json['title'],
       imageUrl: json['images']['jpg']['image_url'],
       synopsis: json['synopsis'] ?? 'No synopsis avaiable',
-      score: json['score'].toString(),
-      type: json['type'],
-      episodes: json['episodes'].toString(),
-      year: json['year'].toString(),
-      status: json['status'],
+      score: json['score'] != null ? json['score'].toString() : 'No score',
+      type: json['type'] ?? 'No type',
+      episodes: json['episodes'] != null
+          ? json['episodes'].toString()
+          : 'No episodes',
+      year: json['year'] != null ? json['year'].toString() : 'No year',
+      status: json['status'] ?? 'No status',
       videoUrl: json['trailer']['url'] ?? 'No trailer',
     );
   }
