@@ -63,14 +63,39 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 }
 
                 return Expanded(
-                  child: ListView.builder(
-                    itemCount: provider.searchAnimeList.length,
-                    itemBuilder: (context, index) {
-                      return Text(
-                        provider.searchAnimeList[index].title,
-                        style: const TextStyle(color: Colors.white),
-                      );
-                    },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: ListView.builder(
+                      itemCount: provider.searchAnimeList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Image.network(
+                                  provider.searchAnimeList[index].imageUrl,
+                                  fit: BoxFit.cover,
+                                  height: 100,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Expanded(
+                                flex: 6,
+                                child: Text(
+                                  provider.searchAnimeList[index].title,
+                                  style: const TextStyle(color: Colors.white),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 );
               },
