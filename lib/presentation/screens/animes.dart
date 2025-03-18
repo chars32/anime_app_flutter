@@ -1,5 +1,3 @@
-import 'package:anime_app/config/router/app_router.dart';
-import 'package:anime_app/presentation/widgets/search_bar.dart';
 import 'package:anime_app/presentation/widgets/slider_list_anime.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

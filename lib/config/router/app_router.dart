@@ -20,7 +20,7 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/search',
       builder: (context, state) {
-        return SearchBarWidget();
+        return const SearchBarWidget();
       },
     ),
   ],
