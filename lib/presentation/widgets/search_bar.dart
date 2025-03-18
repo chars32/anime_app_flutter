@@ -1,3 +1,4 @@
+import 'package:anime_app/presentation/screens/anime_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -80,28 +81,34 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Image.network(
-                                  provider.searchAnimeList[index].imageUrl,
-                                  fit: BoxFit.cover,
-                                  height: 100,
+                          child: GestureDetector(
+                            onTap: () {
+                              context.go(
+                                  '/anime/${provider.searchAnimeList[index].mailId}');
+                            },
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Image.network(
+                                    provider.searchAnimeList[index].imageUrl,
+                                    fit: BoxFit.cover,
+                                    height: 100,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                flex: 6,
-                                child: Text(
-                                  provider.searchAnimeList[index].title,
-                                  style: const TextStyle(color: Colors.white),
-                                  overflow: TextOverflow.ellipsis,
+                                const SizedBox(
+                                  width: 15,
                                 ),
-                              ),
-                            ],
+                                Expanded(
+                                  flex: 6,
+                                  child: Text(
+                                    provider.searchAnimeList[index].title,
+                                    style: const TextStyle(color: Colors.white),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
