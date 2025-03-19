@@ -13,8 +13,6 @@ class AnimesScreen extends StatefulWidget {
 }
 
 class _AnimesScreenState extends State<AnimesScreen> {
-  // bool isSeachVisible = false;
-
   @override
   void initState() {
     super.initState();
@@ -38,10 +36,7 @@ class _AnimesScreenState extends State<AnimesScreen> {
             color: Colors.white,
             icon: const Icon(Icons.search),
             onPressed: () {
-              context.go('/search');
-              // setState(() {
-              //   isSeachVisible = !isSeachVisible;
-              // });
+              context.push('/search');
             },
           ),
         ],
@@ -50,7 +45,6 @@ class _AnimesScreenState extends State<AnimesScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            // SearchBarWidget(isSeachVisible: isSeachVisible),
             Consumer<AnimeProvider>(
               builder: (context, animeProvider, child) {
                 if (animeProvider.topAnimeList.isEmpty ||

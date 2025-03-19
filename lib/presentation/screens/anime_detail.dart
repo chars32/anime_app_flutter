@@ -35,7 +35,8 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
           ),
           onPressed: () {
             Provider.of<AnimeProvider>(context, listen: false).animeById = null;
-            context.go('/');
+            // context.go('/');
+            context.pop();
           },
         ),
         // title: Text('${anime?.title}'),

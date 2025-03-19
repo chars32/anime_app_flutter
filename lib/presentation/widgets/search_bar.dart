@@ -88,7 +88,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: GestureDetector(
                             onTap: () {
-                              context.go(
+                              context.push(
                                   '/anime/${provider.searchAnimeList[index].mailId}');
                             },
                             child: Row(

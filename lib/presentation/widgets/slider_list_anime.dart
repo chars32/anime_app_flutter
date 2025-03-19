@@ -43,7 +43,7 @@ class SliderListAnime extends StatelessWidget {
                   width: widthScreen * .45,
                   child: GestureDetector(
                     onTap: () {
-                      context.go('/anime/${listAnime[index].mailId}');
+                      context.push('/anime/${listAnime[index].mailId}');
                     },
                     child: Column(
                       children: [
